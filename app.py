@@ -10,7 +10,11 @@ import pandas as pd
 import streamlit as st
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-BACKEND_URL = os.getenv("BACKEND_URL", "http://127.0.0.1:5000")
+# Deployment-safe backend URL (works locally + Render)
+BACKEND_URL = os.getenv("BACKEND_URL")
+if not BACKEND_URL:
+    BACKEND_URL = "http://127.0.0.1:5000"
+
 
 st.set_page_config(page_title="Wear Prediction", page_icon="📦", layout="wide")
 
