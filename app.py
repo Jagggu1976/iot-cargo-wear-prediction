@@ -390,7 +390,10 @@ def main():
     with st.sidebar:
         st.header("Backend")
         health = api_get("/health")
-        st.success("API connected") if health else st.warning("Start Flask: python backend/app.py")
+        if health:
+            st.success("API connected")
+        else:
+            st.warning("Start Flask: python backend/app.py")
         st.caption(f"BACKEND_URL = {BACKEND_URL}")
         st.markdown("All visualizations are dynamically generated at runtime; deep learning metrics are loaded from offline training results for comparative analysis.")
 
